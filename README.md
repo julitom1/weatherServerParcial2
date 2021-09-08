@@ -1,3 +1,3 @@
 # weatherServerParcial2
 
-despiegue en heroku: https://weatherserverparcial1.herokuapp.com/
+despiegue en heroku: https://weatherserverparcial1.herokuapp.com/?a=London

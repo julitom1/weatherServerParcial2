@@ -71,20 +71,22 @@ public void serveConnection(Socket clientSocket) throws IOException, URISyntaxEx
 		String uriStr="";
 		
 		try {
-			
+			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
 			uriStr=request.get(0).split(" ")[1];
-		
+			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
 			URI resourceURI = new URI(uriStr);
+			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
 			String query=resourceURI.getQuery();
+			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
 			String rta=buscarQuery(query);
-			System.out.println("Error");
+			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
 			message.write(rta.getBytes());
 			
 			
 			System.out.println(query);
 			
 		}catch(Exception e) {
-			System.out.println("Error");
+			out.write("sad");
 		}
 			
 		out.close();
@@ -94,13 +96,22 @@ public void serveConnection(Socket clientSocket) throws IOException, URISyntaxEx
 	}
 
 private String buscarQuery(String query) throws IOException {
-	String consulta=query.split("=")[1];
-	
-	appWeather.getDates(consulta);
+	try {
+		String consulta=query.split("=")[1];
+		System.out.println("Errores");
+		appWeather.getDates(consulta);
+
+		return "HTTP/1.1 200 OK\r\n" 
+		+ "Content-Type: application/JSON\r\n"
+		+ "\r\n"
+		+ appWeather.getDates(consulta);
+	}
+	catch(Exception e) {
+		
+	}
 	return "HTTP/1.1 200 OK\r\n" 
-	+ "Content-Type: application/JSON\r\n"
-	+ "\r\n"
-	+ appWeather.getDates(consulta);
+			+ "Content-Type: application/JSON\r\n"
+			+ "\r\n";
 	
 }
 

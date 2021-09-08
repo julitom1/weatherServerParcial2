@@ -77,13 +77,14 @@ public void serveConnection(Socket clientSocket) throws IOException, URISyntaxEx
 			URI resourceURI = new URI(uriStr);
 			String query=resourceURI.getQuery();
 			String rta=buscarQuery(query);
-			message.write(rta);
+			System.out.println("Error");
+			message.write(rta.getBytes());
 			
 			
 			System.out.println(query);
 			
 		}catch(Exception e) {
-			
+			System.out.println("Error");
 		}
 			
 		out.close();

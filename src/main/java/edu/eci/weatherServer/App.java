@@ -5,7 +5,8 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import edu.eci.httpServerWeather.HttpServerWeather;
+import edu.eci.HttpWeatherServer.HttpServerWeatherServer;
+
 
 /**
  * Hello world!
@@ -30,6 +31,6 @@ public static void main(String [] args) {
 		if(System.getenv("PORT")!=null) {
 			return Integer.parseInt(System.getenv("PORT"));
 		}
-		return 35000;
+		return 35001;
 	}
 }

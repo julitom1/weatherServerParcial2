@@ -71,18 +71,13 @@ public void serveConnection(Socket clientSocket) throws IOException, URISyntaxEx
 		String uriStr="";
 		
 		try {
-			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
-			uriStr=request.get(0).split(" ")[1];
-			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
-			URI resourceURI = new URI(uriStr);
-			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
-			String query=resourceURI.getQuery();
-			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
-			String rta=buscarQuery(query);
-			System.out.println("ErrorRRRRRRRRRRRRRRRRRRRR");
+		
+			uriStr=request.get(0).split(" ")[1];			
+			URI resourceURI = new URI(uriStr);			
+			String query=resourceURI.getQuery();			
+			String rta=buscarQuery(query);			
 			message.write(rta.getBytes());
-			
-			
+					
 			System.out.println(query);
 			
 		}catch(Exception e) {
@@ -99,7 +94,8 @@ private String buscarQuery(String query) throws IOException {
 	try {
 		String consulta=query.split("=")[1];
 		System.out.println("Errores");
-		appWeather.getDates(consulta);
+		
+		System.out.println(appWeather.getDates(consulta));
 
 		return "HTTP/1.1 200 OK\r\n" 
 		+ "Content-Type: application/JSON\r\n"

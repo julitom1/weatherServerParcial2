@@ -60,7 +60,8 @@ public class AlphaHttpConectionWeather {
         return responseStr;
     }
     private String getUrlCountry(String Country) {
-    	return "https://api.openweathermap.org/data/2.5/weather?"+Country+"=London&appid=8805fcd7d0439565c8dda8eb5eedbbad";
+    	//System.out.println(Country);
+    	return "https://api.openweathermap.org/data/2.5/weather?q="+Country+"&appid=8805fcd7d0439565c8dda8eb5eedbbad";
     }
 
 }

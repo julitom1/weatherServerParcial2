@@ -1,6 +1,7 @@
 package edu.eci.HttpWeatherServer;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -56,6 +57,7 @@ public void serveConnection(Socket clientSocket) throws IOException, URISyntaxEx
 		PrintWriter out = new PrintWriter(outStream, true);
 		InputStream inputStream=clientSocket.getInputStream();
 		BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+		DataOutputStream message=new DataOutputStream(outStream);
 		String inputLine, outputLine;
 		ArrayList<String> request=new ArrayList<String>();
 		
@@ -74,7 +76,8 @@ public void serveConnection(Socket clientSocket) throws IOException, URISyntaxEx
 		
 			URI resourceURI = new URI(uriStr);
 			String query=resourceURI.getQuery();
-			buscarQuery(query);
+			String rta=buscarQuery(query);
+			message.write(rta);
 			
 			
 			System.out.println(query);
@@ -89,11 +92,14 @@ public void serveConnection(Socket clientSocket) throws IOException, URISyntaxEx
 		
 	}
 
-private void buscarQuery(String query) throws IOException {
+private String buscarQuery(String query) throws IOException {
 	String consulta=query.split("=")[1];
 	
 	appWeather.getDates(consulta);
-	
+	return "HTTP/1.1 200 OK\r\n" 
+	+ "Content-Type: application/JSON\r\n"
+	+ "\r\n"
+	+ appWeather.getDates(consulta);
 	
 }
 
